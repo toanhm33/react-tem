@@ -1,0 +1,64 @@
+/* primary */
+.color-primary {
+  @apply text-blue-500;
+}
+.bg-primary {
+  @apply bg-blue-500;
+}
+
+.border-primary {
+  @apply border-blue-500;
+}
+
+.focus-primary {
+  @apply focus:border-blue-400;
+}
+
+.hover-primary {
+  @apply hover:border-blue-500;
+}
+
+/* secondary */
+
+.color-secondary {
+  @apply text-red-500;
+}
+.bg-secondary {
+  @apply bg-red-500;
+}
+
+.padding-df {
+  @apply px-5 py-2;
+}
+
+.border-round-df {
+  @apply rounded;
+}
+
+.btn {
+  @apply border-0 font-medium py-1 px-4 rounded;
+}
+.btn-success {
+  @apply bg-primary text-white;
+}
+.btn-error {
+  @apply bg-secondary text-white;
+}
+.btn-error:hover {
+  @apply bg-red-400;
+}
+.btn-success:hover {
+  @apply bg-blue-700;
+}
+
+.inputSearchStyle {
+  @apply w-full pl-10 pr-4 py-2 focus:outline-none border-2 focus-primary shadow text-gray-600 font-medium rounded-md hover:border-gray-300;
+}
+
+.inputStyle {
+  @apply w-full padding-df outline-none py-1 text-gray-700 focus-primary border-gray-400 border border-round-df hover:border-gray-300;
+}
+
+.error {
+  @apply border rounded placeholder-gray-400 focus:outline-none  border-red-500 !important;
+}
