@@ -5,10 +5,16 @@ import NotFoundPage from '../pages/NotFound/NotFoundPage';
 import { privateRoutes, publicRoutes } from './config';
 import PrivateRoute from './PrivateRoute';
 import PubicRoute from './PublicRoute';
+import { renderRoutes } from 'react-router-config';
+import routes from './routes';
+
 const RouterComponent: React.FC = () => {
   return (
     <Switch>
-      {publicRoutes.map((route) => {
+      <Route>
+        {renderRoutes(routes as any)}
+      </Route>
+      {/* {publicRoutes.map((route) => {
         return <PubicRoute key={route.path} {...route} />;
       })}
       {privateRoutes.map((route) => {
@@ -21,7 +27,7 @@ const RouterComponent: React.FC = () => {
             <NotFoundPage />
           </LayoutCustom>
         )}
-      />
+      /> */}
     </Switch>
   );
 };
