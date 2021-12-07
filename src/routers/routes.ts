@@ -1,13 +1,12 @@
 import { errorsRoutes } from './modules/errors';
 import { lazy } from 'react';
-import LayoutCustom from 'src/components/layout';
-
+import Dashboard from 'src/components/layouts/Dashboard';
 
 export default [
   errorsRoutes,
   {
     route: '*',
-    component: LayoutCustom,
+    component: Dashboard,
     routes: [
       {
         path: '/',

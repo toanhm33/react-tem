@@ -5,13 +5,18 @@ import App from './App';
 import './assets/styles/_variants.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
+
 const queryClient = new QueryClient();
 ReactDOM.render(
-  <QueryClientProvider client={queryClient}>
-    <Suspense fallback={<div></div>}>
-      <App />
-    </Suspense>
-  </QueryClientProvider>,
+  <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
+      <Suspense fallback={<div></div>}>
+        <App />
+      </Suspense>
+    </QueryClientProvider>
+  </Provider>,
   document.getElementById('root')
 );
 

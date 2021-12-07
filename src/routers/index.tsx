@@ -1,10 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import LayoutCustom from '../components/layout';
+import LayoutCustom from '../components/layouts';
 import NotFoundPage from '../pages/NotFound/NotFoundPage';
-import { privateRoutes, publicRoutes } from './config';
-import PrivateRoute from './PrivateRoute';
-import PubicRoute from './PublicRoute';
 import { renderRoutes } from 'react-router-config';
 import routes from './routes';
 

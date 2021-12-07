@@ -6,9 +6,7 @@
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": [
-            1
-        ]
+        // "prettier/prettier": ["error"]
     },
     "parserOptions": {
         "ecmaVersion": 2017

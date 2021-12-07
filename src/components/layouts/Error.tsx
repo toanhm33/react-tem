@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-function Error ({route}) {
+function Error ({route}: any) {
   const classes = useStyles()
 
   return (
