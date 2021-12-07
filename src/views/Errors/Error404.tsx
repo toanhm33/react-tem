@@ -8,7 +8,7 @@ import {
   useMediaQuery
 } from '@material-ui/core'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     paddingTop: '10vh',
     display: 'flex',

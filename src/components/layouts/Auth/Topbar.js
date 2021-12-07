@@ -4,12 +4,10 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import * as CONSTANT from '../../constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     // boxShadow: 'none',
-    background: theme.palette.colors.white,
     boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.13)',
   },
   toolbar: {
@@ -24,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
   label: {
     fontSize: '16px',
     letterSpacing: '1.2px',
-    color: theme.palette.colors.darkGray,
     marginLeft: '-10px',
     fontWeight: 'bolder',
     '@media(max-width: 450px)': {
@@ -61,36 +58,17 @@ const useStyles = makeStyles((theme) => ({
 
 function TopBar({ className, role, ...rest }) {
   const classes = useStyles();
-  const [title, setTitle] = useState('');
-  const [url] = useState('/');
-
-  useEffect(() => {
-    switch (role) {
-      case CONSTANT.COMPANY:
-        setTitle('for BUSINESS');
-        break;
-      case CONSTANT.DOCTOR:
-        setTitle('for DOCTOR');
-        break;
-      case CONSTANT.ADMIN:
-        setTitle('for ADMIN');
-        break;
-      default:
-        break;
-    }
-  }, [role]);
-
   return (
-    <AppBar {...rest} className={clsx(classes.root, className)}>
+    <AppBar>
       <Toolbar className={classes.toolbar}>
-        <RouterLink className={classes.heightHeader} to={url}>
+        <RouterLink className={classes.heightHeader}>
           <img
             className={classes.logoLeft}
             alt="Medical concerto"
             src="/images/logo.png"
           />
         </RouterLink>
-        <Typography className={classes.logo}>{title}</Typography>
+        <Typography className={classes.logo}>title</Typography>
       </Toolbar>
     </AppBar>
   );

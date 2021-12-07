@@ -15,8 +15,8 @@ function* handleLogin(payload: LoginPayload) {
         name: 'success'
       })
     )
-    yield put(push('/admin/dashboard'));
-  } catch (error) {
+    yield put(push('/admin'));
+  } catch (error: any) {
     yield put(authActions.loginFailed(error.message))
   }
 }
@@ -24,7 +24,7 @@ function* handleLogin(payload: LoginPayload) {
 function* handleLogout() {
   console.log('handle logout');
   localStorage.removeItem('access_token');
-  // yield put(push(''));
+  yield put(push('/'));
   // redirect to login page
 }
 

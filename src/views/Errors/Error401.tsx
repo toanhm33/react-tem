@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core'
 // import Page from 'src/components/Page'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     paddingTop: '10vh',
     display: 'flex',

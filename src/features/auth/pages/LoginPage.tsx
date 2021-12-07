@@ -1,9 +1,9 @@
 import { Box, Button, CircularProgress, makeStyles, Paper, Typography } from '@material-ui/core';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
 import * as React from 'react';
 import { authActions } from '../authSlice';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
+import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,6 +12,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: '100vh',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    backgroundImage: `url("/images/background.png")`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPositionX: 'right'
   },
   box: {
     padding: theme.spacing(8),
@@ -51,8 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function LoginPage () {
-  
-  const classes = useStyles();
+
   const dispatch = useAppDispatch()
   const isLogging = useAppSelector(state => state.auth.logging);
   const handleLoginClick = () => {
@@ -61,7 +68,7 @@ export default function LoginPage () {
       password: '',
     }))
   }
-
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <Paper className={classes.box}>
@@ -72,9 +79,9 @@ export default function LoginPage () {
           <div className={classes.control}>
             <label htmlFor='password'>Password</label><input type='password' id='password' required/>
           </div>
-          <Button className={classes.buttonLogin} variant="contained" color="primary" onClick={handleLoginClick}>
+          <Button className={classes.buttonLogin} onClick={handleLoginClick} variant="contained" color="primary" >
             {isLogging && <CircularProgress size={20} color="primary" />}
-            &nbsp; Login
+            login
           </Button>
         </form>
       </Paper>

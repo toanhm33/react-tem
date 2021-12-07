@@ -12,7 +12,7 @@ type Context = {
 };
 
 const initialContext = {
-  form: {} as UseFormReturn,
+  form: {} as UseFormReturn
 };
 
 const HomeContext = createContext<Context>(initialContext);

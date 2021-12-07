@@ -14,10 +14,10 @@ const useStyles = makeStyles((theme) => ({
     // maxWidth: 1620,
     width: '100%',
     minHeight: 'calc(100vh - 40px)',
+    overflowX: 'hidden',
     display: 'flex',
-    '@media all and (-ms-high-contrast:none)': {
-      height: 0, // IE11 fix
-    },
+    background: '#ba5370',
+    background: 'linear-gradient(to right, #000428, #004e92)',
   },
   content: {
     paddingTop: 83,
@@ -34,10 +34,9 @@ const useStyles = makeStyles((theme) => ({
 
 function Dashboard({ route, width }) {
   const classes = useStyles();
-  const [openNavBarMobile, setOpenNavBarMobile] = useState(false);
   return (
     <>
-      <TopBar onOpenNavBarMobile={() => setOpenNavBarMobile(true)} />
+      <TopBar/>
       <div className={classes.container}>
         <div>
           <div>

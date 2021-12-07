@@ -1,6 +1,5 @@
 /** When your routing table is too long, you can split it into small modules* */
-import React, { lazy } from 'react'
-import { Redirect } from 'react-router-dom'
+import { lazy } from 'react'
 import ErrorLayout from '../../components/layouts/Error'
 // Errors routes
 export const errorsRoutes = {

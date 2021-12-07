@@ -13,6 +13,10 @@ import {
   Typography,
   Container,
 } from '@material-ui/core';
+import { useHistory } from 'react-router'
+import { useAppDispatch, useAppSelector } from 'src/app/hooks';
+import { authActions } from 'src/features/auth/authSlice';
+
 // import MenuIcon from '@material-ui/icons/Menu'
 // import * as ACTIONS from 'src/store/actions'
 // import { handleSignOut } from '../../utils/auth'
@@ -52,13 +56,20 @@ const useStyles = makeStyles((theme) => ({
 
 function TopBar({ onOpenNavBarMobile, className, ...rest }) {
   const classes = useStyles();
-
-  const [title, setTitle] = useState('');
-  const [url] = useState('/');
-
-  const onLogout = () => {};
-
-  useEffect(() => {}, []);
+  const history = useHistory()
+  const dispatch = useAppDispatch();
+  const isLogging = useAppSelector(state => state.auth.logging);
+  console.log(isLogging);
+  const handleClick = () => {
+    if(!isLogging) {
+      history.push({
+        pathname: `/login`
+      })
+    } else {
+      dispatch(authActions.logout());
+    }
+  };
+  useEffect(() => {}, [isLogging])
 
   return (
     <AppBar {...rest} className={clsx(classes.root, className)} color="primary">
@@ -68,29 +79,8 @@ function TopBar({ onOpenNavBarMobile, className, ...rest }) {
         className={classes.customContainer}
       >
         <Toolbar className={classes.toolbar}>
-          <Hidden lgUp>
-            <IconButton
-              className={classes.menuButton}
-              color="primary"
-              onClick={onOpenNavBarMobile}
-            >
-              xcc
-            </IconButton>
-          </Hidden>
-          <RouterLink to={url}>
-            <img
-              className={classes.logo}
-              alt="Medical concerto"
-              src="/images/logo.png"
-            />
-          </RouterLink>
-          <Typography className={classes.logoTitle}>{title}</Typography>
           <div className={classes.flexGrow} />
-          <Button onClick={onLogout}>ログアウト</Button>
-
-          <Hidden mdDown>
-            <IconButton className={classes.menuButton}></IconButton>
-          </Hidden>
+          <Button onClick={handleClick}>{isLogging ? 'logout' : 'login'}</Button>
         </Toolbar>
       </Container>
     </AppBar>
