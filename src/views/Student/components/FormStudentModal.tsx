@@ -166,7 +166,6 @@ export default function FormStudentModal({ handleSubmit, open, handleClose }: Fo
   useEffect(() => {
   }, [])
 
-
   return (
     <>
       {/* <AlertDialog open={open} handleSubmit={handleSubmit} handleClose={handleClose} title="Add Student" dialogContent={dialogEditContent}/> */}

@@ -27,9 +27,14 @@ export default [
         component: lazy(() => import('src/pages/HomePage'))
       },
       {
-        path: '/student',
+        path: '/dashboard/student',
         exact: true,
         component: lazy(() => import('src/views/Student'))
+      },
+      {
+        path: '/dashboard',
+        exact: true,
+        component: lazy(() => import('src/views/Dashboard'))
       }
     ]
   },

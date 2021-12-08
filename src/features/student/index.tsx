@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, CircularProgress, makeStyles, Paper, TextField, Typography } from '@material-ui/core';
-import studentApi from 'api/studentApi';
+// import studentApi from 'api/studentApi';
 import StudentTable from './components/table';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import Modal from '@material-ui/core/Modal';
 // import Pagination  from '@material-ui/core/Pagination';
-import AlertDialog from 'components/Common/Dialog';
+// import AlertDialog from 'components/Common/Dialog';
 import { selectStudentFilter, selectStudentList, studentActions } from './studentSlice';
 
 const useStyles = makeStyles((theme) => ({
@@ -100,7 +100,7 @@ export const  Student:React.FC  = () => {
     // formData.append('age', formState.values.age);
     // formData.append('mark', formState.values.mark);
     // formData.append('gender', formState.values.gender);
-    await studentApi.add(formState.values);
+    // await studentApi.add(formState.values);
     const newFilter = {...filter}
     dispatch(studentActions.setFilter(newFilter));
   }
@@ -190,7 +190,7 @@ export const  Student:React.FC  = () => {
         </div>
         <StudentTable studentList={studentList}/>
       </Box>
-      <AlertDialog open={open} handleSubmit={handleSubmit} handleClose={handleClose} title="Add Student" dialogContent={dialogContent}/>
+      {/* <AlertDialog open={open} handleSubmit={handleSubmit} handleClose={handleClose} title="Add Student" dialogContent={dialogContent}/> */}
     </div>
   );
 }

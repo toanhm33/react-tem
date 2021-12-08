@@ -197,10 +197,10 @@ export default function Student({}: Props): ReactElement {
             Add new
           </Button>
         </div>
-        <StudentTable handleUpdate={handleUpdate} studentList={studentList}/>
+        {/* <StudentTable handleUpdate={handleUpdate} studentList={studentList}/> */}
         
       </Box>
-      <FormStudentModal open={open} handleSubmit={handleSubmit} handleClose={handleClose}/>
+      {/* <FormStudentModal open={open} handleSubmit={handleSubmit} handleClose={handleClose}/> */}
     </div>
   );
 }

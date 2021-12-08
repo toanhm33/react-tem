@@ -7,15 +7,19 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import { ConnectedRouter } from 'connected-react-router';
+import { history } from 'src/utils';
 
 const queryClient = new QueryClient();
 ReactDOM.render(
   <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
+    {/* <QueryClientProvider client={queryClient}> */}
+    <ConnectedRouter history={history}>
       <Suspense fallback={<div></div>}>
         <App />
       </Suspense>
-    </QueryClientProvider>
+    </ConnectedRouter>
+    {/* </QueryClientProvider> */}
   </Provider>,
   document.getElementById('root')
 );

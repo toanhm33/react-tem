@@ -4,6 +4,7 @@ import { authActions } from '../authSlice';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,14 +60,15 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function LoginPage () {
-
+  const history = useHistory();
   const dispatch = useAppDispatch()
   const isLogging = useAppSelector(state => state.auth.logging);
-  const handleLoginClick = () => {
-    dispatch(authActions.login({
+  const handleLoginClick = async () => {
+    await dispatch(authActions.login({
       username: '',
       password: '',
     }))
+    // history.push('/dashboard/student')
   }
   const classes = useStyles();
   return (

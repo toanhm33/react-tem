@@ -56,19 +56,19 @@ const useStyles = makeStyles((theme) => ({
 
 function TopBar({ onOpenNavBarMobile, className, ...rest }) {
   const classes = useStyles();
-  const history = useHistory()
+  const history = useHistory();
   const dispatch = useAppDispatch();
-  const isLogging = useAppSelector(state => state.auth.logging);
+  const isLogging = useAppSelector(state => state.auth.isLoggedIn);
   console.log(isLogging);
   const handleClick = () => {
-    if(!isLogging) {
-      history.push({
-        pathname: `/login`
-      })
-    } else {
+    if(isLogging) {
       dispatch(authActions.logout());
+      history.push('/login');
+    } else {
+      history.push('/login');
     }
   };
+
   useEffect(() => {}, [isLogging])
 
   return (

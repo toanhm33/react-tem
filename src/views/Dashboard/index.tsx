@@ -1,11 +1,10 @@
 import { Box, Divider, Grid, LinearProgress, makeStyles, Typography } from '@material-ui/core';
 // import { ChatBubble, ChatRounded, LinearScaleSharp, PeopleAlt } from '@material-ui/icons';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import React, { useEffect, useState } from 'react';
-import StatisticItem from './components/StatisticItem';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { dashboardActions, selectDashBoardLoading, selectDashBoardStatistics, selectHightestStudentList, selectLowestStudentList, selectRankingByCityList } from './dashboardSlice';
 import StudentRanking from './components/StudentRanking';
 import Widget from './components/Widget';
-import { dashboardActions, selectDashBoardLoading, selectDashBoardStatistics, selectHightestStudentList, selectLowestStudentList, selectRankingByCityList } from './dashboardSlice';
 
 export interface DashboardProps {
 }
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export function Dashboard (props: DashboardProps) {
+export function DashboardStudent({}: DashboardProps): ReactElement {
 
   const dispatch = useAppDispatch();
   const loading = useAppSelector(selectDashBoardLoading);
