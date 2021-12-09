@@ -1,10 +1,10 @@
 import { Box, Button, CircularProgress, makeStyles, Paper, Typography } from '@material-ui/core';
 import * as React from 'react';
-import { authActions } from '../authSlice';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { useHistory } from 'react-router';
+import { authActions } from '../authSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,7 +68,9 @@ export default function LoginPage () {
       username: '',
       password: '',
     }))
-    // history.push('/dashboard/student')
+    setTimeout(() => {
+      history.push('/dashboard/city')
+    }, 500);
   }
   const classes = useStyles();
   return (

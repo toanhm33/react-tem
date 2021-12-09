@@ -6,7 +6,7 @@ import { authRouters } from './modules/auth';
 
 export default [
   errorsRoutes,
-  authRouters,
+  // authRouters,
   {
     route: '*',
     component: Dashboard,
@@ -19,7 +19,7 @@ export default [
       {
         path: '/login',
         exact: true,
-        component: lazy(() => import('src/features/auth/pages/LoginPage'))
+        component: lazy(() => import('src/views/auth/pages/LoginPage'))
       },
       {
         path: '/admin',
@@ -32,10 +32,11 @@ export default [
         component: lazy(() => import('src/views/Student'))
       },
       {
-        path: '/dashboard',
+        path: '/dashboard/city',
         exact: true,
         component: lazy(() => import('src/views/Dashboard'))
       }
     ]
   },
 ];
+

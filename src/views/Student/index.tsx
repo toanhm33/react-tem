@@ -1,11 +1,9 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Box, Button, CircularProgress, makeStyles, Paper, TextField, Typography } from '@material-ui/core';
-// import studentApi from 'api/studentApi';
+import studentApi from 'src/api/studentApi';
 import StudentTable from './components/StudentTable';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import Modal from '@material-ui/core/Modal';
-// import Pagination  from '@material-ui/core/Pagination';
-// import AlertDialog from 'components/Common/Dialog';
 import { selectStudentFilter, selectStudentList, studentActions } from './studentSlice';
 import FormStudentModal from './components/FormStudentModal';
 
@@ -17,6 +15,10 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+  },
+  root: {
+    width: '100%',
+    padding: '40px 80px'
   },
   title: {
     fontSize: 30,
@@ -58,8 +60,6 @@ export default function Student({}: Props): ReactElement {
     setOpen(true);
   };
   function handleUpdate() {
-    console.log('run');
-    
     handleOpen();
   }
   const handleClose = () => {
@@ -97,99 +97,96 @@ export default function Student({}: Props): ReactElement {
       }
     }))
   }
-  // const getUser = async () => {
-  //   const res = await studentApi.getAll();
-  //   dispatch(studentActions.fetch({res}))
-  // }
 
   const handleSubmit = async () => {
     const formData = new FormData();
-    // formData.append('name', formState.values.name);
-    // formData.append('city', formState.values.city);
-    // formData.append('age', formState.values.age);
-    // formData.append('mark', formState.values.mark);
-    // formData.append('gender', formState.values.gender);
-    // await studentApi.add(formState.values);
+    formData.append('name', formState.values.name);
+    formData.append('city', formState.values.city);
+    formData.append('age', formState.values.age);
+    formData.append('mark', formState.values.mark);
+    formData.append('gender', formState.values.gender);
+    await studentApi.add(formState.values);
     const newFilter = {...filter}
     dispatch(studentActions.setFilter(newFilter));
   }
 
-  // const dialogContent = (
-  //   <div className={classes.contentDialog}>
-  //     <TextField
-  //       className={classes.textField}
-  //       // error={hasError('password') || hasError('email')}
-  //       fullWidth
-  //       label="Name"
-  //       name="name"
-  //       autoComplete="true"
-  //       onChange={handleChange}
-  //       value={formState.values.name || ''}
-  //       variant="outlined"
-  //       size="small"
-  //     />
-  //     <TextField
-  //       className={classes.textField}
-  //       // error={hasError('password') || hasError('email')}
-  //       fullWidth
-  //       label="Age"
-  //       name="age"
-  //       autoComplete="true"
-  //       onChange={handleChange}
-  //       value={formState.values.age || ''}
-  //       variant="outlined"
-  //       size="small"
-  //     />
-  //     <TextField
-  //       className={classes.textField}
-  //       // error={hasError('password') || hasError('email')}
-  //       fullWidth
-  //       label="Mark"
-  //       name="mark"
-  //       autoComplete="true"
-  //       onChange={handleChange}
-  //       value={formState.values.mark || ''}
-  //       variant="outlined"
-  //       size="small"
-  //     />
-  //     <TextField
-  //       className={classes.textField}
-  //       // error={hasError('password') || hasError('email')}
-  //       fullWidth
-  //       label="City"
-  //       name="city"
-  //       autoComplete="true"
-  //       onChange={handleChange}
-  //       value={formState.values.city || ''}
-  //       variant="outlined"
-  //       size="small"
-  //     />
-  //     <TextField
-  //       className={classes.textField}
-  //       // error={hasError('password') || hasError('email')}
-  //       fullWidth
-  //       label="Gender"
-  //       name="gender"
-  //       autoComplete="true"
-  //       onChange={handleChange}
-  //       value={formState.values.gender || ''}
-  //       variant="outlined"
-  //       size="small"
-  //     />
-  //   </div>
-  // );
+  const dialogContent = (
+    <div className={classes.contentDialog}>
+      <TextField
+        className={classes.textField}
+        // error={hasError('password') || hasError('email')}
+        fullWidth
+        label="Name"
+        name="name"
+        autoComplete="true"
+        onChange={handleChange}
+        value={formState.values.name || ''}
+        variant="outlined"
+        size="small"
+      />
+      <TextField
+        className={classes.textField}
+        // error={hasError('password') || hasError('email')}
+        fullWidth
+        label="Age"
+        name="age"
+        autoComplete="true"
+        onChange={handleChange}
+        value={formState.values.age || ''}
+        variant="outlined"
+        size="small"
+      />
+      <TextField
+        className={classes.textField}
+        // error={hasError('password') || hasError('email')}
+        fullWidth
+        label="Mark"
+        name="mark"
+        autoComplete="true"
+        onChange={handleChange}
+        value={formState.values.mark || ''}
+        variant="outlined"
+        size="small"
+      />
+      <TextField
+        className={classes.textField}
+        // error={hasError('password') || hasError('email')}
+        fullWidth
+        label="City"
+        name="city"
+        autoComplete="true"
+        onChange={handleChange}
+        value={formState.values.city || ''}
+        variant="outlined"
+        size="small"
+      />
+      <TextField
+        className={classes.textField}
+        // error={hasError('password') || hasError('email')}
+        fullWidth
+        label="Gender"
+        name="gender"
+        autoComplete="true"
+        onChange={handleChange}
+        value={formState.values.gender || ''}
+        variant="outlined"
+        size="small"
+      />
+    </div>
+  );
 
   useEffect(() => {
+    console.log('here');
     dispatch(
       studentActions.fetchStudentList({
         _page: 1,
-        _limit: 1115
+        _limit: 115
       })
     )
   }, [dispatch])
-
+  
   return (
-    <div>
+    <div className={classes.root}>
       <Box component="span">
         <Typography className={classes.title}>List student</Typography>
         <div className={classes.buttonWrap}>
@@ -197,10 +194,10 @@ export default function Student({}: Props): ReactElement {
             Add new
           </Button>
         </div>
-        {/* <StudentTable handleUpdate={handleUpdate} studentList={studentList}/> */}
+        <StudentTable handleUpdate={handleUpdate} studentList={studentList}/>
         
       </Box>
-      {/* <FormStudentModal open={open} handleSubmit={handleSubmit} handleClose={handleClose}/> */}
+      <FormStudentModal open={open} handleSubmit={handleSubmit} handleClose={handleClose}/>
     </div>
   );
 }

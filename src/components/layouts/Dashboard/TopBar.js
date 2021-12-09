@@ -15,7 +15,7 @@ import {
 } from '@material-ui/core';
 import { useHistory } from 'react-router'
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { authActions } from 'src/features/auth/authSlice';
+import { authActions } from 'src/views/auth/authSlice';
 
 // import MenuIcon from '@material-ui/icons/Menu'
 // import * as ACTIONS from 'src/store/actions'
@@ -59,7 +59,6 @@ function TopBar({ onOpenNavBarMobile, className, ...rest }) {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const isLogging = useAppSelector(state => state.auth.isLoggedIn);
-  console.log(isLogging);
   const handleClick = () => {
     if(isLogging) {
       dispatch(authActions.logout());
@@ -80,6 +79,8 @@ function TopBar({ onOpenNavBarMobile, className, ...rest }) {
       >
         <Toolbar className={classes.toolbar}>
           <div className={classes.flexGrow} />
+          {isLogging ? <Button onClick={() => {history.push('/dashboard/student')}}>Student</Button> : ''}
+          {isLogging ? <Button onClick={() => {history.push('/dashboard/city')}}>City</Button> : ''}
           <Button onClick={handleClick}>{isLogging ? 'logout' : 'login'}</Button>
         </Toolbar>
       </Container>

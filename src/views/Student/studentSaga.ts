@@ -4,10 +4,11 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { fork } from "redux-saga/effects";
 import { studentActions } from "./studentSlice";
 import { push } from "connected-react-router";
-import studentApi from 'api/studentApi';
-import { ListParams, ListResponse, Student } from 'models';
+import studentApi from 'src/api/studentApi';
+import { ListParams, ListResponse, Student } from 'src/models';
 
 function* fetchStudentList(action: PayloadAction<ListParams>) {
+  console.log('run');
   try {
     const response: ListResponse<Student> = yield call(studentApi.getAll, action.payload);
     yield put(studentActions.fetchStudentListSuccess(response));

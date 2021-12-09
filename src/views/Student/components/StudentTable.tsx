@@ -19,12 +19,15 @@ import FormStudentModal from './FormStudentModal';
 const useStyles = makeStyles({
   root: {
     width: '100%',
+    'th, td': {
+      color: '#fff'
+    }
   },
   container: {
     maxHeight: 440,
   },
-  table: {
-
+  rowColor: {
+    color: '#fff'
   },
   flexWrap: {
     display: 'flex',
@@ -167,27 +170,27 @@ export default function StudentTable({ studentList, handleUpdate }: StudentTable
 
   return (
     <TableContainer className={classes.container}>
-      <Table className={classes.table} size="small" aria-label="simple table">
+      <Table size="small" aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Gender</TableCell>
-            <TableCell>Mark</TableCell>
-            <TableCell>City</TableCell>
-            <TableCell align="center">Actions</TableCell>
+            <TableCell className={classes.rowColor}>ID</TableCell>
+            <TableCell className={classes.rowColor}>Name</TableCell>
+            <TableCell className={classes.rowColor}>Gender</TableCell>
+            <TableCell className={classes.rowColor}>Mark</TableCell>
+            <TableCell className={classes.rowColor}>City</TableCell>
+            <TableCell className={classes.rowColor} align="center">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {
             studentList.map((student, idx) => (
               <TableRow key={student.id}>
-                <TableCell>{ student.id }</TableCell>
-                <TableCell>{ student.name }</TableCell>
-                <TableCell>{ student.gender }</TableCell>
-                <TableCell>{ student.mark }</TableCell>
-                <TableCell>{ student.city }</TableCell>
-                <TableCell className={classes.flexWrap} align="right">
+                <TableCell className={classes.rowColor}>{ student.id }</TableCell>
+                <TableCell className={classes.rowColor}>{ student.name }</TableCell>
+                <TableCell className={classes.rowColor}>{ student.gender }</TableCell>
+                <TableCell className={classes.rowColor}>{ student.mark }</TableCell>
+                <TableCell className={classes.rowColor}>{ student.city }</TableCell>
+                <TableCell className={classes.rowColor} className={classes.flexWrap} align="right">
                   <Button onClick={() => handleRemoveOpen(student)} className={classes.buttonForm} variant="contained" color="secondary">Delete</Button>
                   <Button onClick={handleUpdate} className={classes.buttonForm} variant="contained" color="primary">Edit</Button>
                 </TableCell>

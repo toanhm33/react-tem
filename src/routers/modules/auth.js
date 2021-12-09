@@ -1,6 +1,6 @@
 /** When your routing table is too long, you can split it into small modules* */
-import AuthLayout from 'src/components/layouts/Auth'
 import { lazy } from 'react'
+import Dashboard from 'src/components/layouts/Dashboard'
 
 // Authentication routes
 export const authRouters = {
@@ -11,12 +11,12 @@ export const authRouters = {
    * Ref: https://reactrouter.com/web/api/Route/path-string-string
   */
   path: ['/company'],
-  component: AuthLayout,
+  component: Dashboard,
   routes: [
     {
       path: '/admin/login',
       exact: true,
-      component: lazy(() => import('src/features/auth/pages/LoginPage'))
+      component: lazy(() => import('src/views/auth/pages/LoginPage'))
     }
   ]
 }

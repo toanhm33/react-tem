@@ -3,10 +3,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import RouterComponent from './routers';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Provider store={store}>
       <RouterComponent />
       <ToastContainer
         position="top-right"
@@ -19,7 +21,7 @@ const App: React.FC = () => {
         draggable
         pauseOnHover
       />
-    </Router>
+    </Provider>
   );
 };
 

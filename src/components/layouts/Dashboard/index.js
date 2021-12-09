@@ -8,10 +8,12 @@ import { makeStyles } from '@material-ui/styles';
 import { LinearProgress, withWidth } from '@material-ui/core';
 import Bottom from './Bottom';
 import TopBar from './TopBar';
+import { useAppSelector } from 'src/app/hooks';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     // maxWidth: 1620,
+    marginTop: 64,
     width: '100%',
     minHeight: 'calc(100vh - 40px)',
     overflowX: 'hidden',
@@ -34,17 +36,18 @@ const useStyles = makeStyles((theme) => ({
 
 function Dashboard({ route, width }) {
   const classes = useStyles();
+  const history = useHistory();
+  const isLogging = useAppSelector(state => state.auth.isLoggedIn);
+  useEffect(() => {
+    
+  }, [history, isLogging])
   return (
     <>
       <TopBar/>
       <div className={classes.container}>
-        <div>
-          <div>
-            <Suspense fallback={<LinearProgress />}>
-              {renderRoutes(route.routes)}
-            </Suspense>
-          </div>
-        </div>
+        <Suspense fallback={<LinearProgress />}>
+          {renderRoutes(route.routes)}
+        </Suspense>
       </div>
       <Bottom />
     </>
