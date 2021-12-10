@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Student } from 'src/models';
-import { Button, DialogContentText, TextField } from '@material-ui/core';
-// import AlertDialog from 'components/Common/Dialog';
-// import studentApi from 'api/studentApi';
-import { selectStudentFilter, selectStudentList, studentActions } from '../studentSlice';
+import { Button } from '@material-ui/core';
+import { selectStudentFilter, studentActions } from '../studentSlice';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import FormStudentModal from './FormStudentModal';
 
 const useStyles = makeStyles({
   root: {
@@ -91,83 +86,11 @@ export default function StudentTable({ studentList, handleUpdate }: StudentTable
     dispatch(studentActions.fetchStudentList(filter));
   }, [dispatch, filter, formState.values])
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleEditClose = () => {
-    setOpenEditDialog(false);
-  };
   const handleRemoveOpen = (student: Student) => {
     setOpen(true);
     setSelectedStudent(student);
   };
-  const dialogContent = (
-    <div className={classes.contentDialog}>
-      Are you sure to remove student named?
-    </div>
-  );
-
-  const handleRemoveConfirm = async (student: Student) => {
-    try {
-      console.log(student);
-      // await studentApi.remove(student?.id || '');
-      const newFilter = {...filter}
-      dispatch(studentActions.setFilter(newFilter));
-    } catch (error) {
-      console.log('failed to fetch student');
-      
-    }
-  }
   
-  const handleEditOpen = async (student: Student) => {
-    console.log(student);
-    setOpenEditDialog(true);
-    setSelectedStudent(student);
-    /* eslint-disable */
-    setFormState((prevFormState) => ({
-      ...prevFormState,
-      values: {
-        id: student.id,
-        createdAt: student.createdAt,
-        updatedAt: student.updatedAt,
-        name: student.name,
-        age: student.age.toString(),
-        mark: student.mark.toString(),
-        city: student.city,
-        gender: student.gender,
-      },
-      touched: {
-        ...prevFormState.touched
-      }
-    }))
-    // setFormState(...formState, data);
-  }
-  // const hasError = (field: any) => (!!(formState.touched[field] && formState.errors[field]))
-  const handleChange = (event: any) => {
-    event.persist()
-    setFormState((prevFormState) => ({
-      ...prevFormState,
-      values: {
-        ...prevFormState.values,
-        [event.target.name]:
-          event.target.type === 'checkbox'
-            ? event.target.checked
-            : event.target.value
-      },
-      touched: {
-        ...prevFormState.touched,
-        [event.target.name]: true
-      }
-    }))
-  }
-  
-
-  const handleSubmit = async () => {
-    // await studentApi.update(formState.values);
-    const newFilter = {...filter}
-    dispatch(studentActions.setFilter(newFilter));
-  }
-
   return (
     <TableContainer className={classes.container}>
       <Table size="small" aria-label="simple table">
@@ -190,7 +113,7 @@ export default function StudentTable({ studentList, handleUpdate }: StudentTable
                 <TableCell className={classes.rowColor}>{ student.gender }</TableCell>
                 <TableCell className={classes.rowColor}>{ student.mark }</TableCell>
                 <TableCell className={classes.rowColor}>{ student.city }</TableCell>
-                <TableCell className={classes.rowColor} className={classes.flexWrap} align="right">
+                <TableCell className={classes.flexWrap} align="right">
                   <Button onClick={() => handleRemoveOpen(student)} className={classes.buttonForm} variant="contained" color="secondary">Delete</Button>
                   <Button onClick={handleUpdate} className={classes.buttonForm} variant="contained" color="primary">Edit</Button>
                 </TableCell>
@@ -199,9 +122,6 @@ export default function StudentTable({ studentList, handleUpdate }: StudentTable
           }
         </TableBody>
       </Table>
-      {/* <FormStudentModal  open={openEditDialog} handleSubmit={handleSubmit} handleClose={handleEditClose}/> */}
-      {/* <AlertDialog open={openEditDialog} handleSubmit={handleSubmit} handleClose={handleEditClose} title="Add Student" dialogContent={dialogEditContent}/> */}
-      {/* <AlertDialog open={open} handleSubmit={() => handleRemoveConfirm(selectedStudent as Student)} handleClose={handleClose} title="Remove a Student" dialogContent={dialogContent}/> */}
     </TableContainer>
   );
 }

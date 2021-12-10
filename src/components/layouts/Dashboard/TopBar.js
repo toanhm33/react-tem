@@ -29,10 +29,15 @@ const useStyles = makeStyles((theme) => ({
     background: '#FFFFFF',
     boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.13)',
     zIndex: 1201,
+    background: '#ba5370',
+    background: 'linear-gradient(to right, #000428, #004e92)',
   },
   toolbar: {
     '@media(max-width: 450px)': {
       padding: 0,
+    },
+    '& button': {
+      color: '#bb4dff'
     },
   },
   customContainer: {
@@ -78,6 +83,7 @@ function TopBar({ onOpenNavBarMobile, className, ...rest }) {
         className={classes.customContainer}
       >
         <Toolbar className={classes.toolbar}>
+          <Button onClick={() => {history.push('/')}}>Home</Button>
           <div className={classes.flexGrow} />
           {isLogging ? <Button onClick={() => {history.push('/dashboard/student')}}>Student</Button> : ''}
           {isLogging ? <Button onClick={() => {history.push('/dashboard/city')}}>City</Button> : ''}

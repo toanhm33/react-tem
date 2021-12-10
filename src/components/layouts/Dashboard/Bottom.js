@@ -4,7 +4,9 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(() => ({
   root: {
-    padding: '80px'
+    padding: '80px',
+    background: '#ba5370',
+    background: 'linear-gradient(to right, #000428, #004e92)',
   },
 }));
 

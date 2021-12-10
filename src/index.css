@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url('assets/styles/styles.css');
+
+body {
+  margin: 0;
+}

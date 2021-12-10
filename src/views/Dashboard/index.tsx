@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   loading: {
     position: 'absolute',
-    top: theme.spacing(-1),
+    top: 10,
     width: '100%'
   },
   title: {
@@ -43,7 +43,6 @@ export default function DashboardStudent({}: DashboardProps): ReactElement {
   useEffect(() => {
     dispatch(dashboardActions.fetchData());
   }, [dispatch])
-  console.log(loading);
   
   return (
     <Box className={classes.root}>

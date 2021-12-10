@@ -40,8 +40,6 @@ const dashboardSlice = createSlice({
   initialState,
   reducers: {
     fetchData(state) {
-      console.log('dashboard', state);
-      
       state.loading = true;
     },
     fetchDataSuccess(state) {
