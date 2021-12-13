@@ -1,12 +1,27 @@
 import React from 'react';
-import Popup from 'reactjs-popup';
-import { PopupProps } from 'reactjs-popup/dist/types';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Modal, { ModalProps } from '@material-ui/core/Modal';
+import { Dialog } from '@material-ui/core';
 
-const overlayStyle = { background: 'rgba(0,0,0,0.5)' };
-export const ModalComponent: React.FC<PopupProps> = (props) => {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      boxShadow: theme.shadows[5],
+      padding: 30
+    },
+  }),
+);
+
+export const ModalComponent: React.FC<ModalProps> = (props) => {
+  const classes = useStyles();
+  const { children } = props
   return (
-    <Popup overlayStyle={overlayStyle} {...props}>
-      {props.children}
-    </Popup>
+    <Dialog
+      {...props}
+    >
+      <div className={classes.root}>
+        {children}
+      </div>
+    </Dialog>
   );
-};
+}
